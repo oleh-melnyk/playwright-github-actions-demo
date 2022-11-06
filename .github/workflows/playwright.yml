@@ -14,14 +14,12 @@ jobs:
       with:
         node-version: 16
         cache: 'yarn'
-    - name: Install dependencies
-      run: npm install yarn
     - name: Install Playwright Browsers
       run: npx playwright install
     - name: Install Allure CLI
       run: npm install allure-commandline -D
     - name: Install rest dependencies from package.json
-      run: yarn install
+      run: yarn --prefer-offline
     - name: Run Playwright tests
       run: yarn run:dev
       if: ${{ github.ref == 'refs/heads/main' }}
